@@ -12,7 +12,6 @@ const int maxLog = 20;
 
 /**
  * RMQ(Range Maximum Queries), also named ST(Sparse Table)
- * 0-based or 1-based array is doesn't matter
  * min's, max's parameter L, R indicated [L, R]
  */
 template<typename T>
@@ -40,18 +39,14 @@ struct RMQ {
     }
 
     T max(int L, int R) {
-        std::tuple<int, int, int> interval = this->normal(L, R);
-        L = std::get<0>(interval);
-        R = std::get<1>(interval);
-        int k = std::get<2>(interval);
+        int k;
+        std::tie(L, R, k) = this->normal(L, R);
         return std::max(mx[L][k], mx[R - (1 << k) + 1][k]);
     }
 
     T min(int L, int R) {
-        std::tuple<int, int, int> interval = this->normal(L, R);
-        L = std::get<0>(interval);
-        R = std::get<1>(interval);
-        int k = std::get<2>(interval);
+        int k;
+        std::tie(L, R, k) = this->normal(L, R);
         return std::min(mn[L][k], mn[R - (1 << k) + 1][k]);
     }
 };
@@ -80,5 +75,3 @@ int main() {
 
     return 0;
 }
-
-
