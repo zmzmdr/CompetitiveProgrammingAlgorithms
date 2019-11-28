@@ -12,6 +12,7 @@ const int maxLog = 20;
 
 /**
  * RMQ(Range Maximum Queries), also named ST(Sparse Table)
+ * 0-based or 1-based array is doesn't matter
  * min's, max's parameter L, R indicated [L, R]
  */
 template<typename T>
